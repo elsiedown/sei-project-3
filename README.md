@@ -9,13 +9,6 @@ To access all available features, please sign up for an account or use the follo
 email: elsieadmin@email.com
 password: pass
 
-## Collaborators
-
-* Tobi Lesi - [Github](https://github.com/olulesi)
-* Ricky Cato - [Github](https://github.com/rickyc000)
-* Edwyn Abi-Acar - [Github](https://github.com/Edwyn26)
-
-
 ## Overview
 
 This was my third project on the General Assembly Software Engineering Immersive course.  As a group of 4, we were given a week to build a full-stack application of our choice.
@@ -24,6 +17,11 @@ Our idea was cityspace. Cityspace is a platform that encourages users to explore
 
 This Readme will outline the approach we took and the wins and challenges that I encountered along the way.
 
+## Collaborators
+
+* Tobi Lesi - [Github](https://github.com/olulesi)
+* Ricky Cato - [Github](https://github.com/rickyc000)
+* Edwyn Abi-Acar - [Github](https://github.com/Edwyn26)
 
 ## Brief
 
@@ -59,6 +57,8 @@ This Readme will outline the approach we took and the wins and challenges that I
 * Insomnia
 * Trello
 * VSCode & Eslint
+* Heroku 
+* Mongodb Atlas
 
 
 ## Features
@@ -74,7 +74,7 @@ This Readme will outline the approach we took and the wins and challenges that I
 	* Ability to comment on spaces and add to favourites
 	* User profile 
 	* Other user profile
-## The site:
+## The Site:
 
  User can sign up, adding their details and choosing their preferences of what sort of spaces they are looking to find:
 
@@ -96,7 +96,7 @@ The categories page is another place to explore and find a space. By clicking on
 
 ![](client/src/screenshots/categories.png)
 
-The view page for each space. The user can comment on the space (delete the comment). The user can also favourite the space from this page as well as click on the user profile of the person who added the space, the categories and the individual map view of that space.
+The view page for each space. The user can comment on the space ( & delete the comment). The user can also favourite the space from this page as well as click on the user profile of the person who added the space, the categories and the individual map view of that space.
 
 ![](client/src/screenshots/showpage.png)
 
@@ -202,24 +202,157 @@ async function favouriteASpace(req, res, next) {
 * Keen to populate our site with lots of different spaces, we each focussed on creating a certain number of spaces that we could seed when deploying the site. From the outset, we aimed to find high-quality images as this would add to the overall aesthetic of the site. 
 
 
-**Front-End**
+*Front-End*
+
+* Similar to how we built the back-end, we decided to split the work up and then worked on the front-end in either pairs or individually. Ricky and I worked on implementing Mapbox on the front-end. We used mapbox both on the main home page (displaying all our spaces on one single map) as well as having an individual map view for each detailed cityspace page. 
+
+* When it came to working on tasks individually, I implemented the requests and relationships I had set up on the back-end, working on how the ‘favouriting’ functionality would work on the front-end. Whilst the requests were relatively straightforward to set-up, I had some difficult updating the data on the page (eg. The number of likes // showing a  ‘liked’ icon) without having to refresh the page. In order to this, within the useEffect ,  I checked whether the User had already liked that space or not (and then within the return use that state value to set the favourite button to ‘liked’) as well as check for the number of likes for that space:
+
+```
+
+// State values for the favouriting functionality
+
+const [isFavourite, setIsFavourite] = React.useState(false)
+const [favourites, setFavourites] = React.useState(0)
+
+// useEffect to check 'favourited' data: 
+React.useEffect(() => {
+    const getSpace = async () => {
+      try {
+        const { data } = await getSingleSpace(id)
+        setSpace(data)
+        if (data.favouritedBy.includes(getUserId())) {
+          setIsFavourite(true)
+        }
+        if (data.favouritedBy) {
+          setFavourites(data.favouritedBy.length)
+        }
+        if (data.comments) {
+          setComments(data.comments)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getSpace()
+  }, [id, newComment])
+
+// Add to Favourite Request:
+
+
+ const handleFavourite = async event => {
+    event.preventDefault()
+    try {
+      await addToFavourites(id)
+      setIsFavourite(!isFavourite)
+      setFavourites(favourites + 1)
+    } catch (err) {
+      console.log(err)
+    }
+    //* Add to the users favourites
+  }
+
+
+// The return of the favouriting section
+
+
+{!isLoggedIn ?
+                      <Link to='/login'>
+                        <div className="ui button">
+                          <Icon
+                            name="heart outline"
+                          ></Icon>
+                          {favourites ? favourites : 0}
+                        </div>
+                      </Link>
+                      :
+                      <div className="show-page-favourites">
+                        {!isFavourite ?
+                          <div className="ui button" onClick={handleFavourite}>
+                            <Icon
+                              name="heart outline"
+                            ></Icon>
+                            {favourites ? favourites : 0}
+                          </div>
+                          :
+                          <div className="ui button yellow" onClick={handleUnFavourite}>
+                            <Icon
+                              name="heart"
+                            ></Icon>
+                            {favourites ? favourites : 0}
+                          </div>
+                        
+                        }
+                      </div>
+                    }
+
+
+```
+
+* I then worked on setting up the profile page, and it was really exciting and satisfying to see all the relationships (eg. Created spaces and favourite spaces) showing up on the page.  For both the created and favourited spaces, I used the Map method (given that the amount of data would always be different for each user) to map out any spaces that were linked to that profile.
+```
+  <div>
+                  {profile.favouritedSpaces ?
+                    <div className="space-grid">
+                      {profile.favouritedSpaces.map(space => (
+                        <div className="space-div" key={space._id}>
+                          <Link to={`/spaces/${space._id}`}>
+                            <img src={space.image} className="space-image" />
+                          </Link>
+                          {/* <p key={space._id}>{space.name}</p> */}
+                        </div>
+
+
+                      ))}
+                    </div>
+                    :
+                    <p>{profile.firstName} hasnt favourited any spaces</p>
+                  }
+                </div>
+
+```
+
+
+* I also worked on the visibility of the site for whether a user was logged in or not. For example, if a user was not logged in and clicked on a user’s icon - I decided to direct them to the sign-up page in order to access these restricted features. If they were logged in, I directed them to the profile page of that user.
+
+```
+   {isLoggedIn ?
+                        <div className="added-by">
+                          <Link to={space.owner ? `/users/${space.owner._id}` : ''} className="ui image label">
+                            <Icon name="user circle" />
+                      Added by {space.owner ? space.owner.username : ''}
+                          </Link>
+                        </div>
+                        :
+                        <div className="added-by">
+                          <Link to='/login' className="ui image label">
+                            <Icon name="user circle" />
+                      Added by {space.owner ? space.owner.username : ''}
+                          </Link>
+                        </div>
+                      }
+
+```
+
 
 
 ## Challenges
 
-* Given that this was my first time working in a larger group, the main challenge was dividing the work and finding a work flow that was most efficient for all of us.  I think a challenge was working on Zoom and coordinating all the tasks over zoom - which proved to be difficult with various internet issues.
+* Given that this was my first time working in a larger group, the main challenge was dividing the work and finding a work flow that was most efficient for all of us.  I think a challenge coordinating all the tasks over Zoom - which proved to be difficult with various internet issues. However, constant communication and updates over Slack and Trello ensured we still managed to work effectively as a group.
 
 ## Wins
 * I think we were all extremely happy with how the site looked by the end and how much we were able to build within the timeframe of a week. The site was exactly how we had imagined and it had a professional and clean finish to it as intended.
-* A huge win was the way we worked as a group. Daily group stand-ups and clear communication between us all helped the process and made the project really enjoyable. Similarly, avoiding conflicts on GitHub and overall smooth running of the project were major wins for us all. 
+* A huge win was the way we worked as a group. Daily group stand-ups and clear communication between us all helped the process and made the project really enjoyable.  If anyone ever was having issues or stuck on a certain problem, we came together in a great way and solved the problem together effectively. 
+* Similarly, avoiding conflicts on GitHub and overall smooth running of the project were major wins for us all. 
 
 ## What I learned
 * This was my first project working on back-end and I feel I learned a lot about how the requests were set up and creating relationships between different models.
-* With regards to the front-end, I continued to develop my understanding of how RESTful routes work, as well as user authentication.
+* With regards to the front-end, I continued to develop my understanding of how RESTful routes work, as well as user authentication. I also enjoyed using 3rd-party React packages such as Mapbox.
 * I inevitably learned a lot from my teammates, as well as how to work efficiently in a group.
 * The project was invaluable in terms of learning how to use Team GIT - for the first few times, we would co-ordinate with one another and oversee each-other pushing to the development branch. I think this really helped the overall process of using GitHub and insured the smooth running of the project and avoiding problematic conflicts.
 
 ## Future Features
 
-* If we had more time, we spoke about building the app for multiple cities - not just London. 
+* If we had more time, we spoke about building the app for multiple cities - not just London.
+* It would have been nice to also add the ability to see your current location and find spaces based on your current location.
 * We also would have liked to have been able to add multiple photos for each space.

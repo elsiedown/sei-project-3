@@ -2,7 +2,7 @@
 
 ## GA SEI Project 3: Full-Stack MERN App
 
-You can find a hosted version of our App here : 
+You can find a hosted version of our App here :  [cityspace](https://cityspace.herokuapp.com/)
 
 ## Collaborators
 
@@ -72,39 +72,37 @@ This Readme will outline the approach we took and the wins and challenges that I
 
  User can sign up, adding their details and choosing their preferences of what sort of spaces they are looking to find:
 
-[image:840F03C8-8D0F-4154-A2BD-AC9EFF5A60F5-10106-0001D6978B5AA842/Screenshot 2021-02-08 at 17.27.07.png]
-
+![](client/src/screenshots/sign-up.png)
 
 User logs in:
-[image:BE83D624-E983-4938-8F30-F614C81E8FCC-10106-0001D6978B132461/Screenshot 2021-02-08 at 17.27.26.png]
+
+![](client/src/screenshots/login.png)
 
 Upon logging in, user lands on the main homepage - which includes featured spaces, spaces recommended for that user (based on the preferences they chose), map view of all spaces, and different categories:
 
-[image:775F81DB-0B4C-4997-8308-C96A403180FA-10106-0001D6978AD13A2B/Screenshot 2021-02-08 at 17.27.47.png]
+![](client/src/screenshots/welcome.png)
+![](client/src/screenshots/welcome-two.png)
+![](client/src/screenshots/welcome-three.png)
+![](client/src/screenshots/welcome-four.png)
 
-
-[image:1A61B3A7-5EDC-439F-94A7-AFF4095C9FDB-10106-0001D697899984F5/Screenshot 2021-02-08 at 17.28.41.png]
-[image:C030AF3F-FA80-4C08-ACE8-375951243911-10106-0001D6978A7C3F58/Screenshot 2021-02-08 at 17.27.59.png]
-
-[image:8AC13771-6F20-41AA-AF6C-A7D0C3CB7A7F-10106-0001D6978B9BA24F/Screenshot 2021-02-08 at 17.25.49.png]
 
 The categories page is another place to explore and find a space. By clicking on the different category titles at the top of the page, the results are then filtered to that category.  By hovering on each space - the user can see how many likes that space has as well as the name of the space:
 
-[image:760BFB39-4775-4D2C-81AB-7DD04D0A251D-10106-0001D697884A8D9A/Screenshot 2021-02-08 at 17.29.59.png]
+![](client/src/screenshots/categories.png)
 
 The view page for each space. The user can comment on the space (delete the comment). The user can also favourite the space from this page as well as click on the user profile of the person who added the space, the categories and the individual map view of that space.
 
-[image:913C1917-47E0-44B3-92B1-94BBC89FF473-10106-0001D697878A6A13/Screenshot 2021-02-08 at 17.30.38.png]
+![](client/src/screenshots/showpage.png)
 
 
 
 A user can add a space (and again choose the categories which best describe that space):
 
-[image:F0F67432-22FF-445B-A1C1-ED91B43EEE4B-10106-0001D69786A35C7A/Screenshot 2021-02-08 at 17.31.25.png]
+![](client/src/screenshots/add-space.png)
 
 A user can then view their profile (as well as other users) - to view the spaces they have favourited or keep track of the spaces they’ve created. Their profile also displays their favourite categories:
 
-[image:EF65B855-56CF-4349-941A-36CA6280D731-10106-0001D69787338504/Screenshot 2021-02-08 at 17.31.11.png]
+![](client/src/screenshots/profile.png)
 
 
 

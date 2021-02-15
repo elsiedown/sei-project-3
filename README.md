@@ -215,11 +215,11 @@ async function favouriteASpace(req, res, next) {
 
 ## What I learned
 * This was my first project working on back-end and I feel I learned a lot about how the requests were set up and creating relationships between different models.
-* With regards to the front-end, I continued to develop my styling skills.
+* With regards to the front-end, I continued to develop my understanding of how RESTful routes work, as well as user authentication.
 * I inevitably learned a lot from my teammates, as well as how to work efficiently in a group.
 * The project was invaluable in terms of learning how to use Team GIT - for the first few times, we would co-ordinate with one another and oversee each-other pushing to the development branch. I think this really helped the overall process of using GitHub and insured the smooth running of the project and avoiding problematic conflicts.
 
-## Future Features
+## Future Features
 
 * If we had more time, we spoke about building the app for multiple cities - not just London. 
 * We also would have liked to have been able to add multiple photos for each space.

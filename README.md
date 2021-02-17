@@ -1,6 +1,6 @@
 # Project 3 - cityspace
 
-## GA SEI Project 3: Full-Stack MERN Application
+## General Assembly SEI Project 3: Full-Stack MERN Application
 
 You can find a hosted version of our app here :  [cityspace](https://cityspace.herokuapp.com/) (deployed using Heroku)
 

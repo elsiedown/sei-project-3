@@ -39,20 +39,25 @@ This Readme will outline the approach we took and the wins and challenges that I
 
 **Timeframe**: 1 week in a group of 4 developers
 
+**Back-End**:
+* MongoDB
+* Mongoose
+* Node.js
+* Express
+
+**Front-End**:
 * React.js
 * JavaScript (ES6)
 * HTML5 
-* Node.js
 * Semantic UI React
-* MongoDB
-* Mongoose
-* Express.js
 * Yarn
 * Axios
 * CSS5 and SASS
 * Cloudinary
 * Dependencies installed: Mapbox, slick-carousel, react-router-dom, react-slick
 * [Postcodes.io API](https://postcodes.io/)
+
+**Dev Tools**:
 * Git & GitHub
 * Insomnia
 * Trello

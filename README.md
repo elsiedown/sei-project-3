@@ -25,11 +25,11 @@ This Readme will outline the approach we took and the wins and challenges that I
 
 ## Brief
 
-* **Build a full-stack application** by making your own backend and your own front-end
-* **Use an Express API** to serve your data from a Mongo database
-* **Consume your API with a separate front-end** built with React
-* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
-* **Implement thoughtful user stories/wireframes** that are significant enough to help you know which features are core MVP and which you can cut
+* **Build a full-stack application** by making your own backend and your own front-end.
+* **Use an Express API** to serve your data from a Mongo database.
+* **Consume your API with a separate front-end** built with React.
+* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models.
+* **Implement thoughtful user stories/wireframes** that are significant enough to help you know which features are core MVP and which you can cut.
 * **Have a visually impressive design** to kick your portfolio up a notch and have something to wow future clients & employers.
 * **Be deployed online** so it’s publicly accessible.
 
@@ -97,7 +97,7 @@ Upon logging in, user lands on the main homepage - which includes featured space
 ![](client/src/screenshots/welcome-four.png)
 
 
-The categories page is another place to explore and find a space. By clicking on the different category titles at the top of the page, the results are then filtered to that category eg. 'Art & Design', 'Peace & Quiet'.  By hovering on each space - the user can see how many likes that space has as well as the name of the space. By clicking on a space, the user will be taken to the detailed view page for that space.:
+The categories page is another place to explore and find a space. By clicking on the different category titles at the top of the page, the results are then filtered to that category eg. 'Art & Design', 'Peace & Quiet'.  By hovering on each space - the user can see how many likes that space has as well as the name of the space. By clicking on a space, the user will be taken to the detailed view page for that space:
 
 ![](client/src/screenshots/categories.png)
 
